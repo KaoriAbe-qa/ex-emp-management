@@ -37,7 +37,7 @@ public class Employee {
 	private Integer dependentsConut;
 	
 	//引数なしコンストラクタ
-	public class Empluyee{
+	public Employee(){
 	}
 	
 	//すべてのフィールドを引数に取るコンストラクタ

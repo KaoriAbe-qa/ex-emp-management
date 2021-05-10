@@ -18,7 +18,7 @@ public class Administrator {
 	private String password;
 	
 	//引数なしコンストラクタ
-	public class Adnimistrator {	
+	public Administrator(){	
 	}
 
 	//以下ゲッターセッター
