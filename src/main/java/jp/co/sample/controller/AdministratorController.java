@@ -65,7 +65,7 @@ public class AdministratorController {
 	 * @return インスタンス化しそのまま返す 
 	 * */
 	@ModelAttribute
-	public LoginForm setUpForm() {
+	public LoginForm setUpLoginForm() {
 		return new LoginForm();
 	}
 	
