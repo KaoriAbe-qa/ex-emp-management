@@ -95,5 +95,11 @@ public class AdministratorController {
 		//従業員一覧情報ページにフォワード
 		return "employee/List";
 	}
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
+		return "administrator/login";
+	}
 
 }

@@ -49,4 +49,18 @@ public class EmployeeController {
 		model.addAttribute("employee", info);
 		return "employee/detail";
 	}
+	
+	/** 従業員詳細(ここでは扶養人数のみ)を更新する
+	 * @return  「/employee/showList」にリダイレクト*/
+	@RequestMapping("/update")
+	public String update(UpdateEmployeeForm form) {
+		//Employee ドメインを主キー検索する
+		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
+		//扶養人数を検索してきたEmployee ドメインにセットし上書き
+		employee.setDependentsCount(Integer.parseInt(form.getDependendsConut()));
+		
+		employeeService.update(employee);
+		//リダイレクト
+		return "redirect:/employee/showList";
+	}
 }
