@@ -54,10 +54,14 @@ public class EmployeeController {
 	 * @return  「/employee/showList」にリダイレクト*/
 	@RequestMapping("/update")
 	public String update(UpdateEmployeeForm form) {
+		//確認用
+		System.out.println(form.getId());
+		System.out.println(form.getDependentsCount());
+		
 		//Employee ドメインを主キー検索する
 		Employee employee = employeeService.showDetail(Integer.parseInt(form.getId()));
 		//扶養人数を検索してきたEmployee ドメインにセットし上書き
-		employee.setDependentsCount(Integer.parseInt(form.getDependendsConut()));
+		employee.setDependentsCount(Integer.parseInt(form.getDependentsCount()));
 		
 		employeeService.update(employee);
 		//リダイレクト
