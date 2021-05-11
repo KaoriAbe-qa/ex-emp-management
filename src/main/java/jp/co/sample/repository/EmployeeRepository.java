@@ -28,14 +28,14 @@ public class EmployeeRepository {
 		employee.setName(rs.getString("name"));
 		employee.setImage(rs.getString("image"));
 		employee.setGender(rs.getString("gender"));
-		employee.setHireDate(rs.getDate("hireDate"));
-		employee.setMailAddress(rs.getString("mailAddress"));
-		employee.setZipCode(rs.getString("zipCode"));
+		employee.setHireDate(rs.getDate("hire_date"));
+		employee.setMailAddress(rs.getString("mail_address"));
+		employee.setZipCode(rs.getString("zip_code"));
 		employee.setAddress(rs.getString("address"));
 		employee.setTelephone(rs.getString("telephone"));
 		employee.setSalary(rs.getInt("salary"));
 		employee.setCharacteristics(rs.getString("characteristics"));
-		employee.setDependentsConut(rs.getInt("dependentsConut"));
+		employee.setDependentsCount(rs.getInt("dependents_count"));
 		return employee;
 	};
 	
@@ -75,9 +75,9 @@ public class EmployeeRepository {
 		 = new BeanPropertySqlParameterSource(employee);
 		
 		String updateSql
-		 = "UPDATE employees name=:name,image=:image,gender=:gender,hire_date=:hireDate"
+		 = "UPDATE employees SET name=:name,image=:image,gender=:gender,hire_date=:hireDate"
 		 		+ ",mail_address=:mailAddress,zip_code=:zipCode,address=:address"
-		 		+ ",telephone=:telephone,salary=:salary,characteristics=:characteristics,dependents_conut=:dependentsConut";
+		 		+ ",telephone=:telephone,salary=:salary,characteristics=:characteristics,dependents_count=:dependentsCount WHERE id=:id;";
 		template.update(updateSql, param);
 	}
 

@@ -24,7 +24,7 @@ public class AdministratorRepository {
 		Administrator administrator = new Administrator();
 		administrator.setId(rs.getInt("id"));
 		administrator.setName(rs.getString("name"));
-		administrator.setMailAddress(rs.getString("mailAddress"));
+		administrator.setMailAddress(rs.getString("mail_address"));
 		administrator.setPassword(rs.getString("password"));
 		return administrator;
 	};
@@ -48,10 +48,10 @@ public class AdministratorRepository {
 	 * @return 管理者情報（何もなければnullを返す）*/
 	public Administrator findByMailAddressAndPassword(String mailAddress, String password) {
 		String findSql
-		 = "SELECT id,name,mail_address,password FROM administrators WHERE mail_address=:mailAdress AND password=:password ORDER BY id;";
+		 = "SELECT id,name,mail_address,password FROM administrators WHERE mail_address=:mailAddress AND password=:password ORDER BY id;";
 		
 		SqlParameterSource param
-		 = new MapSqlParameterSource().addValue("mail_address",mailAddress).addValue("password", password);
+		 = new MapSqlParameterSource().addValue("mailAddress",mailAddress).addValue("password", password);
 		
 		List<Administrator> administratorList
 		 = template.query(findSql, param, ADMINISTRATOR_ROW_MAPPER);
