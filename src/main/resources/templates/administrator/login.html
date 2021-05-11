@@ -30,8 +30,7 @@
 
 <!-- ここにモックのform要素を貼り付けます -->
 
-					<form th:action="@{/login}" th:object="${loginForm}" method="post" action="../employee/list.html" 
-					 th:if="${administratorName == null}" th:text="model">
+					<form th:action="@{/login}" th:object="${loginForm}" method="post" action="../employee/list.html" >
 						<fieldset>
 							<legend>ログイン</legend>
 							<div class="form-group">
@@ -53,6 +52,7 @@
 							<div class="form-group">
 								<a href="insert.html" th:href="@{/toInsert}">管理者登録はこちらから</a>
 							</div>
+							<span th:unless="${message == null}" th:text="@{message}"></span>
 						</fieldset>
 					</form>
 

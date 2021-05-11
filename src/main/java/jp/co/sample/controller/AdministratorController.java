@@ -87,13 +87,13 @@ public class AdministratorController {
 		Administrator loginResult = administratorService.login(form.getMailAddress(), form.getPassword()); 
 		
 		if(loginResult == null) {
-			model.addAttribute("メールアドレスまたはパスワードが不正です");
-			return toLogin();
+			model.addAttribute("message", "メールアドレスまたはパスワードが不正です");
+			return "administrator/login";
 		}
 		//sessionスコープに管理者名を格納
 		session.setAttribute("administratorName", loginResult.getName());
 		//従業員一覧情報ページにフォワード
-		return "foward:/employee/showList";
+		return "employee/List";
 	}
 
 }

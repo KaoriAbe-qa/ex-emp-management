@@ -77,7 +77,7 @@ public class EmployeeRepository {
 		String updateSql
 		 = "UPDATE employees name=:name,image=:image,gender=:gender,hire_date=:hireDate"
 		 		+ ",mail_address=:mailAddress,zip_code=:zipCode,address=:address"
-		 		+ ",telephone=:telephone,salary=:salary,characteristics=:characteristics,dependents_conut=:dependentsConut";
+		 		+ ",telephone=:telephone,salary=:salary,characteristics=:characteristics,dependents_count=:dependentsCount";
 		template.update(updateSql, param);
 	}
 
