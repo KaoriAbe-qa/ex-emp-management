@@ -34,7 +34,7 @@ public class Employee {
 	/** 特性 */
 	private String characteristics;
 	/** 扶養人数 */
-	private Integer dependentsConut;
+	private Integer dependentsCount;
 	
 	//引数なしコンストラクタ
 	public Employee(){
@@ -43,7 +43,7 @@ public class Employee {
 	//すべてのフィールドを引数に取るコンストラクタ
 	public Employee(Integer id, String name, String image, String gender, Date hireDate, String mailAddress,
 			String zipCode, String address, String telephone, Integer salary, String characteristics,
-			Integer dependentsConut) {
+			Integer dependentsCount) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -56,7 +56,7 @@ public class Employee {
 		this.telephone = telephone;
 		this.salary = salary;
 		this.characteristics = characteristics;
-		this.dependentsConut = dependentsConut;
+		this.dependentsCount = dependentsCount;
 	}
 
 	//以下ゲッターセッター
@@ -148,12 +148,12 @@ public class Employee {
 		this.characteristics = characteristics;
 	}
 
-	public Integer getDependentsConut() {
-		return dependentsConut;
+	public Integer getDependentsCount() {
+		return dependentsCount;
 	}
 
-	public void setDependentsConut(Integer dependentsConut) {
-		this.dependentsConut = dependentsConut;
+	public void setDependentsCount(Integer dependentsCount) {
+		this.dependentsCount = dependentsCount;
 	}
 
 	@Override
@@ -161,7 +161,7 @@ public class Employee {
 		return "Employee [id=" + id + ", name=" + name + ", image=" + image + ", gender=" + gender + ", hireDate="
 				+ hireDate + ", mailAddress=" + mailAddress + ", zipCode=" + zipCode + ", address=" + address
 				+ ", telephone=" + telephone + ", salary=" + salary + ", characteristics=" + characteristics
-				+ ", dependentsConut=" + dependentsConut + "]";
+				+ ", dependentsCount=" + dependentsCount + "]";
 	}
 	
 

@@ -1,9 +1,15 @@
 package jp.co.sample.controller;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import jp.co.sample.domain.Administrator;
 import jp.co.sample.form.InsertAdministratorForm;
@@ -41,11 +47,25 @@ public class AdministratorController {
 		return "administrator/insert";
 	}
 	
+	@ModelAttribute
+	public InsertAdministratorForm setUpForm() {
+		return new InsertAdministratorForm();
+	}
+	
 	/** 管理者情報を登録するメソッド
 	 * @return administrator/login.html
 	 * */
 	@RequestMapping("/insert")
-	public String insert(InsertAdministratorForm form) {
+	public String insert(
+			@Validated InsertAdministratorForm form
+			, BindingResult result
+			, RedirectAttributes redirectAttributes
+			, Model model) {
+		
+		if(result.hasErrors()) {
+			return toInsert();
+		}
+		
 		Administrator administrator = new Administrator();
 		//formオブジェクトからadministratorに中身をコピー
 		administrator.setName(form.getName());
@@ -62,7 +82,7 @@ public class AdministratorController {
 	 * @return インスタンス化しそのまま返す 
 	 * */
 	@ModelAttribute
-	public LoginForm setUpForm() {
+	public LoginForm setUpLoginForm() {
 		return new LoginForm();
 	}
 	
@@ -72,6 +92,30 @@ public class AdministratorController {
 	@RequestMapping("/")
 	public String toLogin() {
 		//ログイン画面にフォワード
+		return "administrator/login";
+	}
+	
+	//sessionスコープを使うための設定
+	@Autowired
+	private HttpSession session;
+	
+	@RequestMapping("/login")
+	public String login(LoginForm form, Model model) {
+		Administrator loginResult = administratorService.login(form.getMailAddress(), form.getPassword()); 
+		
+		if(loginResult == null) {
+			model.addAttribute("message", "メールアドレスまたはパスワードが不正です");
+			return "administrator/login";
+		}
+		//sessionスコープに管理者名を格納
+		session.setAttribute("administratorName", loginResult.getName());
+		//従業員一覧情報ページにフォワード
+		return "employee/List";
+	}
+	
+	@RequestMapping("/logout")
+	public String logout() {
+		session.invalidate();
 		return "administrator/login";
 	}
 
