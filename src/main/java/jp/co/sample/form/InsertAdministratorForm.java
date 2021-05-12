@@ -1,5 +1,9 @@
 package jp.co.sample.form;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
+
 /** 
  * 管理者登録時に使用するフォーム
  * @author abe
@@ -7,10 +11,13 @@ package jp.co.sample.form;
 public class InsertAdministratorForm {
 
 	/** 名前 */
+	@NotBlank(message="名前は必須です")
 	private String name;
 	/** メールアドレス */
+	@Email(message="Eメールの形式が不正です")
 	private String mailAddress;
 	/** パスワード */
+	@Size(min=4,max=20,message="パスワードは１文字以上２０字以内で記載してください")
 	private String password;
 	
 	//以下ゲッターセッター
